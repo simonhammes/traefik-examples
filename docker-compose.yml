@@ -27,10 +27,8 @@ services:
     container_name: db
     environment:
       MARIADB_ROOT_PASSWORD: "root"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.db.rule=Host(`db.localhost`)"
-      - "traefik.http.routers.db.entrypoints=web"
+    ports:
+      - "3306:3306"
   phpmyadmin:
     image: phpmyadmin:5
     container_name: phpmyadmin
