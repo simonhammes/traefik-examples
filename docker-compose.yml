@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   traefik:
-    image: traefik:v2.10
+    image: traefik:3.0
     container_name: traefik
     command:
       #- "--log.level=DEBUG"
@@ -16,14 +16,14 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
   whoami:
-    image: traefik/whoami
+    image: traefik/whoami:latest
     container_name: "simple-service"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
       - "traefik.http.routers.whoami.entrypoints=web"
   db:
-    image: mariadb:11.0-rc
+    image: mariadb:11
     container_name: db
     environment:
       MARIADB_ROOT_PASSWORD: "root"
